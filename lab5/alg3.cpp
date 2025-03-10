@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+
+
+int max_v(std::vector<int> array){
+	int m = 0;
+	for (int i:array){
+		m = std::max(m, i);
+	}
+	//std::cout << m << "\n";
+	return m;
+}
+
+std::vector<int> sort_v3(std::vector<int> array){
+	std::vector<int> output;
+	int mmax = max_v(array);
+	std::vector<int> counter(mmax+1, 0);
+	for (int i = 0; i < array.size(); i++){
+		counter[array[i]] = counter[array[i]] + 1;
+	}
+	for (int i = 0; i <= mmax; i++){
+		for (int j = 0; j < counter[i]; j++){
+			output.push_back(i);
+		}
+	}
+
+	//for (int i: counter){
+	//	std::cout << i << " ";
+	//}	
+	//std::cout << "\n";
+	return output;
+}
+int main(){
+	std::vector<int> array = {4,6,8,9,6,5,4,5,4,8,7,7,6,6,100};
+	for (int i:array){
+		std::cout << i << " ";
+	}
+	std::cout << "\n";
+	for (int i:sort_v3(array)){
+		std::cout << i << " ";
+	}
+	return 0;
+}
